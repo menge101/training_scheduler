@@ -1,5 +1,5 @@
-require "minitest/autorun"
-require "./schedule_reader"
+require 'minitest/autorun'
+require './schedule_reader'
 
 class ScheduleReaderTest < MiniTest::Test
   def test_read_schedule

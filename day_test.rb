@@ -31,4 +31,11 @@ class DayTest < MiniTest::Test
     collision = Day.new({time: Time.now, distance: 'rest', notes: 'Speed Work'})
     assert_equal 'Speed Work rest', collision.notes
   end
+
+  def test_implements_the_scheduleable_interface
+    test = Day.new({time: Time.now, distance: 2})
+    assert_respond_to(test, :time)
+    assert_respond_to(test, :distance)
+    assert_respond_to(test, :notes)
+  end
 end

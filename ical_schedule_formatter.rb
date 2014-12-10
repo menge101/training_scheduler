@@ -1,7 +1,7 @@
 require 'icalendar'
-require './schedule_writer'
+require './schedule_formatter'
 
-class IcalSchedule < ScheduleWriter
+class IcalScheduleFormatter < ScheduleFormatter
   def create_calendar
     cal = Icalendar::Calendar.new
     @days.each { |day| format_event(day, cal) }

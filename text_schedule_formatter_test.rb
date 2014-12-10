@@ -1,10 +1,10 @@
 require 'minitest/autorun'
 require './scheduleable_double'
-require './text_schedule_writer'
+require './text_schedule_formatter'
 
-class TextScheduleWriterTest < MiniTest::Test
+class TextScheduleFormatterTest < MiniTest::Test
   def test_create_calendar
-    x = TextScheduleWriter.new([ScheduleableDouble.new], nil)
+    x = TextScheduleFormatter.new([ScheduleableDouble.new], nil)
     expected = 'Summary:Run 2 miles'
     assert_includes x.create_calendar, expected
     expected = 'Description:This is a note'

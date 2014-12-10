@@ -1,4 +1,4 @@
-class ScheduleWriter
+class ScheduleFormatter
   def initialize(days, data_persistor)
     @days = days
     @persistor = data_persistor

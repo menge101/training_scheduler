@@ -1,5 +1,5 @@
-require './schedule_writer'
-class TextScheduleWriter < ScheduleWriter
+require_relative 'schedule_formatter'
+class TextScheduleFormatter < ScheduleFormatter
   def create_calendar
     cal = ''
     @days.each { |day| cal << format_event(day) }

@@ -1,16 +1,16 @@
 require 'minitest/autorun'
-require './scheduleable_double'
-require './ical_schedule'
+require_relative 'scheduleable_double'
+require_relative 'ical_schedule_formatter'
 
 
-class IcalScheduleTest < MiniTest::Test
+class IcalScheduleFormatterTest < MiniTest::Test
   def test_initialize
-    x = IcalSchedule.new([ScheduleableDouble.new],nil)
+    x = IcalScheduleFormatter.new([ScheduleableDouble.new],nil)
     assert x
   end
 
   def test_create_calendar
-    x = IcalSchedule.new([ScheduleableDouble.new],nil)
+    x = IcalScheduleFormatter.new([ScheduleableDouble.new],nil)
     expected = "DTSTART;VALUE=DATE:20141116\r\nDTEND;VALUE=DATE:20141116"
     assert_includes x.create_calendar.chomp, expected
     expected = 'DESCRIPTION:This is a note'

@@ -10,12 +10,7 @@ class TextScheduleReader < ScheduleReader
   end
 
   private
-  def read_data_file(input_file)
-    if File::file?(input_file)
-      input = File::open(input_file, 'r')
+  def read_data_file(input)
       @data = input.readlines
-    else
-      raise IOError, "File: #{input_file} was not found."
-    end
   end
 end

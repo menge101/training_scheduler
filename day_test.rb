@@ -1,6 +1,7 @@
-require "minitest/autorun"
-require './day'
+require 'minitest/autorun'
 require 'time'
+require_relative 'day'
+
 
 class DayTest < MiniTest::Test
   def test_time

@@ -1,7 +1,7 @@
 require 'json'
-require './schedule_reader'
+require './training_plan_reader'
 
-class JsonScheduleReader < ScheduleReader
+class JsonTrainingPlanReader < TrainingPlanReader
   def schedule_data
     return_array = [{name: @data['name']}]
     @data['days'].each do |x|

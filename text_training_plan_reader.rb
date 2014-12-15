@@ -1,6 +1,6 @@
-require './schedule_reader'
+require './training_plan_reader'
 
-class TextScheduleReader < ScheduleReader
+class TextTrainingPlanReader < TrainingPlanReader
   def schedule_data
     return_array = [{name: @data.slice!(0).to_s.chomp}]
     @data.each do |x|

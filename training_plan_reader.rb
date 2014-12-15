@@ -1,4 +1,4 @@
-class ScheduleReader
+class TrainingPlanReader
 # argument - string
 # return true or exception
 # This method does the actual reading of the source training file

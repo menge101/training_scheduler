@@ -1,12 +1,32 @@
+require_relative 'day'
 class Schedule
-  attr_accessor :name, :days
+  VALID_PARAMS = [:reader, :formatter, :writer, :name].freeze
+
+  VALID_PARAMS.each { |param| attr_accessor param.to_sym}
 
   def initialize(params={})
-    @name = params[:name] if params[:name]
-    @days = params[:days] if params[:days]
+    params.each { |key, value| self.instance_variable_set("@#{key}".to_sym, value) if VALID_PARAMS.include?(key) }
   end
 
-  def nil?
-    @name.nil? || @days.nil?
+  def build_schedule
+    data = read_training_plan
+    @name = data[:name]
+    days = process_data(data)
+    schedule = format_days(days)
+    persist_schedule(schedule)
   end
+
+  def read_training_plan
+    if @reader
+      @reader.schedule_data
+    else
+      raise RunTimeError, 'Reader not initialized.'
+    end
+  end
+
+  def process_data(data)
+    days = []
+    data.each_with_index { |entry,idx | days << Day.new(entry.merge(offest: idx)) }
+  end
+
 end

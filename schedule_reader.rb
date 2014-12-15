@@ -1,5 +1,8 @@
 class ScheduleReader
-  def read_schedule(file_name)
+# argument - string
+# return true or exception
+# This method does the actual reading of the source training file
+  def read_training_plan(file_name)
     if File::file?(file_name)
       input = File::open(file_name, "r")
       @data = read_data_file(input)

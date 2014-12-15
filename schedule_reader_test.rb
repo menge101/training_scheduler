@@ -3,8 +3,8 @@ require './schedule_reader'
 
 class ScheduleReaderTest < MiniTest::Test
   def test_read_schedule
-    assert_raises(IOError) {ScheduleReader.new.read_schedule('non_existant_file_name.boo')}
-    assert_raises(NotImplementedError) {ScheduleReader.new.read_schedule('simple.json')}
+    assert_raises(IOError) {ScheduleReader.new.read_training_plan('non_existant_file_name.boo')}
+    assert_raises(NotImplementedError) {ScheduleReader.new.read_training_plan('simple.json')}
   end
   
   def test_schedule_data

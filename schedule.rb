@@ -10,14 +10,14 @@ class Schedule
 
   def build_schedule
     data = read_training_plan
-    @name = data[:name]
+    @name = data.shift[:name]
     days = process_data(data)
     schedule = format_days(days)
     persist_schedule(schedule)
   end
 
   def read_training_plan
-    if @reader
+    if @reader.read_file
       @reader.schedule_data
     else
       raise RunTimeError, 'Reader not initialized.'
@@ -26,7 +26,8 @@ class Schedule
 
   def process_data(data)
     days = []
-    data.each_with_index { |entry,idx | days << Day.new(entry.merge(offest: idx)) }
+    data.each_with_index { |entry,idx | days << Day.new(entry.merge(offset: idx)) }
+    days
   end
 
 end

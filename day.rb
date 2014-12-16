@@ -25,4 +25,12 @@ class Day
     end
     return params
   end
+
+  def ==(other)
+    flag = true
+    VALID_PARAMS.each do |param|
+      flag = flag && self.send(param) == other.send(param)
+    end
+    flag && self.class == other.class
+  end
 end

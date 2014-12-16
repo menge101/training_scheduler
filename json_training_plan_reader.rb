@@ -1,5 +1,5 @@
 require 'json'
-require './training_plan_reader'
+require_relative 'training_plan_reader'
 
 class JsonTrainingPlanReader < TrainingPlanReader
   def schedule_data
@@ -7,7 +7,7 @@ class JsonTrainingPlanReader < TrainingPlanReader
     @data['days'].each do |x|
       return_array << {distance: x.to_s}
     end
-    return return_array
+    return_array
   end
 
   private

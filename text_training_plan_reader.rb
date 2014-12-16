@@ -6,7 +6,7 @@ class TextTrainingPlanReader < TrainingPlanReader
     @data.each do |x|
       return_array << {distance: x.to_s.chomp}
     end
-    return return_array
+    return_array
   end
 
   private

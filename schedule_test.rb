@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require_relative 'schedule'
 require_relative 'day'
+require_relative 'scheduleable_double'
 
 class ScheduleTest < MiniTest::Test
   def test_initialize
@@ -16,14 +17,18 @@ class ScheduleTest < MiniTest::Test
 
   def test_read_training_plan
     reader = MiniTest::Mock.new
+    reader.expect(:read_file, true)
     reader.expect(:schedule_data, [ScheduleableDouble.new])
     x = Schedule.new({reader: reader})
-    assert_equal([ScheduleableDouble.new], x.read_training_plan)
+    assert_equal(ScheduleableDouble.new, x.read_training_plan.first)
     reader.verify
   end
 
   def test_process_data
-
+    arguments = [{distance:1, offset:0},{distance:2, offset:1}]
+    expectation = [Day.new({distance:1, offset:0}), Day.new({distance:2, offset:1})]
+    x = Schedule.new
+    assert_equal expectation, x.process_data(arguments)
   end
 
   def test_format_days

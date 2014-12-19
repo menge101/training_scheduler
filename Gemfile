@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'minitest'
-gem 'rubocop'
 gem 'icalendar'
 gem 'rake'
+
+group :test, :development do
+  gem 'minitest'
+  gem 'rubocop'
+end

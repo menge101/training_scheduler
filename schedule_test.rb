@@ -1,5 +1,5 @@
-require "minitest/autorun"
-require './schedule'
+require 'minitest/autorun'
+require_relative 'schedule'
 
 class ScheduleTest < MiniTest::Test
   def test_initialize

@@ -15,6 +15,47 @@ class ScheduleTest < MiniTest::Test
 
   end
 
+  def test_extract_name_from_data
+    data = [{name:'test'},{distance:1, offset:0},{distance:2, offset:1}]
+    x = Schedule.new({data:data})
+    assert_equal nil, x.name
+    x.extract_name_from_data
+    assert_equal 'test', x.name
+    assert_equal 3, data.size
+
+    data = [{name:'test',distance:1, offset:0},{distance:2, offset:1}]
+    x = Schedule.new({data:data})
+    assert_equal nil, x.name
+    x.extract_name_from_data
+    assert_equal 'test', x.name
+    assert_equal 2, data.size
+
+    data = [{distance:1, offset:0},{distance:2, offset:1}]
+    x = Schedule.new({data:data})
+    assert_equal nil, x.name
+    x.extract_name_from_data
+    assert_equal nil, x.name
+    assert_equal 2, data.size
+  end
+
+  def test_sanitize_data
+    data = [{distance:1, offset:0},{distance:2, offset:1}]
+    x = Schedule.new({data:data})
+    x.sanitize_data
+    assert_equal data, x.data
+
+    data = [{name: 'test',distance:1, offset:0},{distance:2, offset:1}]
+    x = Schedule.new({data:data})
+    x.sanitize_data
+    assert_equal data, x.data
+
+    data = [{name: 'test'},{distance:1, offset:0},{distance:2, offset:1}]
+    expectation = [{distance:1, offset:0},{distance:2, offset:1}]
+    x = Schedule.new({data:data})
+    x.sanitize_data
+    assert_equal expectation, x.data
+  end
+
   def test_read_training_plan
     reader = MiniTest::Mock.new
     reader.expect(:read_file, true)
@@ -27,8 +68,8 @@ class ScheduleTest < MiniTest::Test
   def test_process_data
     arguments = [{distance:1, offset:0},{distance:2, offset:1}]
     expectation = [Day.new({distance:1, offset:0}), Day.new({distance:2, offset:1})]
-    x = Schedule.new
-    assert_equal expectation, x.process_data(arguments)
+    x = Schedule.new({data: arguments})
+    assert_equal expectation, x.process_data
   end
 
   def test_format_days

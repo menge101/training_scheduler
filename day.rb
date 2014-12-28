@@ -23,7 +23,7 @@ class Day
       end
       params[:distance] = 0
     end
-    return params
+    params
   end
 
   def ==(other)

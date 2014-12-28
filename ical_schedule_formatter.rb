@@ -1,11 +1,11 @@
 require 'icalendar'
-require './schedule_formatter'
+require_relative 'schedule_formatter'
 
 class IcalScheduleFormatter < ScheduleFormatter
   def create_calendar
     cal = Icalendar::Calendar.new
     @days.each { |day| format_event(day, cal) }
-    return cal.to_ical
+    cal.to_ical
   end
 
   private

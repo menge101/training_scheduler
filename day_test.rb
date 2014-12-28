@@ -34,7 +34,7 @@ class DayTest < MiniTest::Test
     assert_equal 'Speed Work rest', collision.notes
   end
 
-  #This fucking test doens't work and I don't understand why.
+  #This fucking test doesn't work and I don't understand why.
   #def test_equal
   #  day1 = Day.new({time: Time.now, distance: 'NA', notes: 'Sprints'})
   #  day2 = Day.new({time: Time.now, distance: 'NA', notes: 'Sprints'})

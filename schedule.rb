@@ -12,9 +12,17 @@ class Schedule
     @data = read_training_plan
     extract_name_from_data
     sanitize_data
-    days = process_data
-    schedule = format_days(days)
-    persist_schedule(schedule)
+    @days = process_data
+    @schedule = format_days
+    persist_schedule
+  end
+
+  def read_training_plan
+    if @reader.read_file
+      @reader.schedule_data
+    else
+      raise RunTimeError, 'Reader not initialized.'
+    end
   end
 
   # Schedule name should be in the first element of the data array
@@ -27,18 +35,14 @@ class Schedule
     @data.delete_if {|data_entry| !data_entry.has_key?(:time) && !data_entry.has_key?(:distance) }
   end
 
-  def read_training_plan
-    if @reader.read_file
-      @reader.schedule_data
-    else
-      raise RunTimeError, 'Reader not initialized.'
-    end
-  end
-
   def process_data
     days = []
     @data.each_with_index { |entry,idx | days << Day.new(entry.merge(offset: idx)) }
     days
+  end
+
+  def format_days
+
   end
 
 end

@@ -10,7 +10,7 @@ class IcalScheduleFormatterTest < MiniTest::Test
   end
 
   def test_create_calendar
-    x = IcalScheduleFormatter.new([ScheduleableDouble.new],nil)
+    x = IcalScheduleFormatter.new([ScheduleableDouble.new])
     expected = "DTSTART;VALUE=DATE:20141116\r\nDTEND;VALUE=DATE:20141116"
     assert_includes x.create_calendar.chomp, expected
     expected = 'DESCRIPTION:This is a note'

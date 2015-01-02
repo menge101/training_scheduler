@@ -4,7 +4,7 @@ require './text_schedule_formatter'
 
 class TextScheduleFormatterTest < MiniTest::Test
   def test_create_calendar
-    x = TextScheduleFormatter.new([ScheduleableDouble.new], nil)
+    x = TextScheduleFormatter.new([ScheduleableDouble.new])
     expected = 'Summary:Run 2 miles'
     assert_includes x.create_calendar, expected
     expected = 'Description:This is a note'

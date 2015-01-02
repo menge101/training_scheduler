@@ -77,6 +77,21 @@ class ScheduleTest < MiniTest::Test
   end
 
   def test_persist_schedule
-
+    #following test is from old formatter persistence test
+    #def test_persist_content
+    #  observer = MiniTest::Mock.new
+    #  x = ScheduleFormatter.new([ScheduleableDouble.new],observer)
+    #  observer.expect(:persist, true, ['test_string'])
+    #  observer.expect(:close, true)
+    #  assert x.persist_content('test_string')
+    #  observer.verify
+    #
+    #  observer = MiniTest::Mock.new
+    #  x = ScheduleFormatter.new([ScheduleableDouble.new],observer)
+    #  observer.expect(:persist, false, ['test_string'])
+    #  observer.expect(:close, true)
+    #  x.persist_content('test_string')
+    #  observer.verify
+    #end
   end
 end
